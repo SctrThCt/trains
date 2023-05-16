@@ -73,7 +73,7 @@ public class StationService {
         List<Waybill> wagonsOnTrack = track.getWagons();
         wagons.addAll(wagonsOnTrack.stream()
                 .sorted(Comparator.comparingInt(Waybill::getOrderNumber))
-                .collect(Collectors.toList()));
+                .toList());
         track.setWagons(wagons);
         return waybillRepository.saveAll(wagonsOnTrack);
     }
@@ -86,17 +86,11 @@ public class StationService {
     @Transactional
     public void dispatchWagon(int stationId, int trackNumber)
     {
-        log.info("getting station");
         Station station = get(stationId);
-        log.info("getting track");
         Track track = station.getTracks().get(trackNumber);
-        log.info("getting wagons");
         List<Waybill> wagonsOnTrack = track.getWagons();
-        log.info("getting wagon");
         Waybill wagonToDispatch = wagonsOnTrack.get(0);
-        log.info("nulling track");
         wagonToDispatch.setTrack(null);
-        log.info("returning wagon");
         waybillRepository.save(wagonToDispatch);
     }
 
