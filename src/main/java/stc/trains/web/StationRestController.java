@@ -52,8 +52,12 @@ public class StationRestController {
     }
 
     @PostMapping("/{stationId}/move")
-    public List<Waybill> moveWagons(@PathVariable int stationId, @RequestParam int track, @RequestParam boolean head, @RequestBody List<Waybill> waybills) {
-        return head ? stationService.moveWagonsToHead(stationId, track, waybills) : stationService.moveWagonsToTail(stationId, track, waybills);
+    public void moveWagons(@PathVariable int stationId, @RequestParam int track, @RequestParam boolean head, @RequestBody List<Waybill> waybills) {
+        if (head) {
+            stationService.moveWagonsToHead(stationId, track, waybills);
+        } else {
+            stationService.moveWagonsToTail(stationId, track, waybills);
+        }
     }
 
     @PostMapping("/{stationId}/track/{trackNumber}/dispatch")

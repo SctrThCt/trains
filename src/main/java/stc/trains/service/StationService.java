@@ -9,12 +9,9 @@ import stc.trains.model.Track;
 import stc.trains.model.Waybill;
 import stc.trains.repository.StationRepository;
 import stc.trains.repository.WaybillRepository;
-import stc.trains.to.StationTo;
-import stc.trains.util.StationUtil;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -25,11 +22,6 @@ public class StationService {
 
     public Station get(int id) {
         return stationRepository.findById(id).orElseThrow();
-    }
-
-    public StationTo getTo(int id)
-    {
-        return new StationTo(get(id));
     }
 
     public Station create(Station station) {
@@ -44,20 +36,17 @@ public class StationService {
         stationRepository.deleteExisted(id);
     }
 
-    public List<Station> getAll()
-    {
+    public List<Station> getAll() {
         return stationRepository.findAll();
     }
 
     @Transactional
-    public List<Waybill> acceptWagons(int stationId, int trackNumber, List<Waybill> wagons)
-    {
+    public List<Waybill> acceptWagons(int stationId, int trackNumber, List<Waybill> wagons) {
         Station station = get(stationId);
-        Track track = station.getTracks().get(trackNumber-1);
+        Track track = station.getTracks().get(trackNumber - 1);
         List<Waybill> wagonsOnTrack = track.getWagons();
-        Integer wagonNumber = wagonsOnTrack.isEmpty() ? 0 : wagonsOnTrack.size()-1;
-        for (Waybill w:wagons)
-        {
+        Integer wagonNumber = wagonsOnTrack.isEmpty() ? 0 : wagonsOnTrack.size() - 1;
+        for (Waybill w : wagons) {
             w.setOrderNumber(wagonNumber++);
             w.setTrack(track);
             wagonsOnTrack.add(w);
@@ -66,26 +55,24 @@ public class StationService {
     }
 
     @Transactional
-    public List<Waybill> moveWagonsToHead(int stationId, int trackNumber, List<Waybill> wagons)
-    {
+    public void moveWagonsToHead(int stationId, int trackNumber, List<Waybill> wagons) {
         Station station = get(stationId);
-        Track track = station.getTracks().get(trackNumber-1);
+        Track track = station.getTracks().get(trackNumber - 1);
         List<Waybill> wagonsOnTrack = track.getWagons();
         wagons.addAll(wagonsOnTrack.stream()
                 .sorted(Comparator.comparingInt(Waybill::getOrderNumber))
                 .toList());
         track.setWagons(wagons);
-        return waybillRepository.saveAll(wagonsOnTrack);
-    }
-    @Transactional
-    public List<Waybill> moveWagonsToTail(int stationId, int trackNumber, List<Waybill> wagons)
-    {
-        return acceptWagons(stationId,trackNumber,wagons);
+        waybillRepository.saveAll(wagonsOnTrack);
     }
 
     @Transactional
-    public void dispatchWagon(int stationId, int trackNumber)
-    {
+    public void moveWagonsToTail(int stationId, int trackNumber, List<Waybill> wagons) {
+        acceptWagons(stationId, trackNumber, wagons);
+    }
+
+    @Transactional
+    public void dispatchWagon(int stationId, int trackNumber) {
         Station station = get(stationId);
         Track track = station.getTracks().get(trackNumber);
         List<Waybill> wagonsOnTrack = track.getWagons();
