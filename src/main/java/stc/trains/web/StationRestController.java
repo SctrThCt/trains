@@ -46,12 +46,12 @@ public class StationRestController {
         stationService.update(station);
     }
 
-    @PostMapping("/{stationId}/accept")
+    @PatchMapping("/{stationId}/accept")
     public List<Waybill> acceptWagons(@PathVariable int stationId, @RequestParam int track, @RequestBody List<Waybill> waybills) {
         return stationService.acceptWagons(stationId, track, waybills);
     }
 
-    @PostMapping("/{stationId}/move")
+    @PatchMapping("/{stationId}/move")
     public void moveWagons(@PathVariable int stationId, @RequestParam int track, @RequestParam boolean head, @RequestBody List<Waybill> waybills) {
         if (head) {
             stationService.moveWagonsToHead(stationId, track, waybills);
@@ -60,7 +60,7 @@ public class StationRestController {
         }
     }
 
-    @PostMapping("/{stationId}/track/{trackNumber}/dispatch")
+    @PatchMapping("/{stationId}/track/{trackNumber}/dispatch")
     public void dispatchWagon(@PathVariable int stationId, @PathVariable int trackNumber) {
         stationService.dispatchWagon(stationId, trackNumber);
     }

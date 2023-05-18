@@ -32,7 +32,6 @@ public class Track extends BaseEntity {
     private Integer trackNumber;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "track")
     @OrderBy("orderNumber asc")
-    @JsonIgnore
     private List<Waybill> wagons;
 
     public Track(Integer id, Station station,Long stationId, Integer trackNumber, List<Waybill> wagons) {

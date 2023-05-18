@@ -5,6 +5,7 @@ import stc.trains.model.Track;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import static stc.trains.StationTestData.*;
 import static stc.trains.WaybillTestData.*;
@@ -32,9 +33,9 @@ public class TrackTestData {
     {
         return List.of(track_1,track_2,track_3,track_4,track_5,track_6);
     }
-    public static List<Track> updatedForStation1()
+    public static Map<Integer,Track> updatedForStation1()
     {
-        return List.of(track_1,track_2,track_3,track_4,track_7);
+        return Map.of(track_1.getTrackNumber(),track_1, track_2.getTrackNumber(),track_2, track_3.getTrackNumber(),track_3, track_4.getTrackNumber(),track_4,track_7.getTrackNumber(),track_7);
     }
 
 }

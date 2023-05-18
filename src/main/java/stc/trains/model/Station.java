@@ -20,12 +20,12 @@ import java.util.Map;
 public class Station extends NamedEntity{
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "station")
-    @OrderBy("trackNumber asc")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonManagedReference
-    List<Track> tracks;
+    @MapKey(name = "trackNumber")
+    Map<Integer,Track> tracks;
 
-    public Station(Integer id, String name, List<Track> tracks)
+    public Station(Integer id, String name, Map<Integer,Track> tracks)
     {
         super(id, name);
         this.tracks=tracks;

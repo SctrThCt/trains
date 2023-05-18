@@ -39,7 +39,7 @@ public class WaybillRestController {
         return waybillService.create(waybill);
     }
 
-    @PostMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void update(@PathVariable int id, @RequestBody Waybill waybill) {
         assureIdConsistent(waybill, id);
         waybillService.update(waybill);

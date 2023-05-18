@@ -85,7 +85,7 @@ class StationRestControllerTest extends BaseControllerTest{
     @WithUserDetails(value = "test")
     void dispatch() throws Exception
     {
-        perform(MockMvcRequestBuilders.post(URL+"/"+STATION_1_ID+"/track/0/dispatch"))
+        perform(MockMvcRequestBuilders.patch(URL+"/"+STATION_1_ID+"/track/0/dispatch"))
                 .andExpect(status().isOk())
                 .andDo(print());
         Waybill dispatched = waybillService.get(1);
@@ -97,7 +97,7 @@ class StationRestControllerTest extends BaseControllerTest{
     @Test
     @WithUserDetails(value = "test")
     void addToHead() throws Exception {
-        perform(MockMvcRequestBuilders.post(URL+"/"+STATION_1_ID+"/move?track=2&head=true")
+        perform(MockMvcRequestBuilders.patch(URL+"/"+STATION_1_ID+"/move?track=2&head=true")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(mapper.writeValueAsString(List.of(WaybillTestData.waybill_2))))
                 .andExpect(status().isOk())
