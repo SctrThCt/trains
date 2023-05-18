@@ -12,12 +12,17 @@ import java.util.List;
 @Service
 public class TrackService {
     private TrackRepository trackRepository;
+    private StationService stationService;
 
     public Track get(int id) {
         return trackRepository.findById(id).orElseThrow();
     }
 
     public Track create(Track track) {
+        if(track.getStation()==null)
+        {
+            track.setStation(stationService.get(Math.toIntExact(track.getStationId())));
+        }
         return trackRepository.save(track);
     }
 

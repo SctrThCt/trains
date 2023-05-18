@@ -34,7 +34,7 @@ public class Waybill extends BaseEntity {
     @Column(name = "full_wagon_weight")
     private Integer fullWagonWeight;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "track_id")
     @JsonBackReference("track")
     private Track track;

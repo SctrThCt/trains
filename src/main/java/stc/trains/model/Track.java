@@ -31,7 +31,6 @@ public class Track extends BaseEntity {
     @Column(name = "track_number")
     private Integer trackNumber;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "track")
-    @OrderBy("orderNumber asc")
     private List<Waybill> wagons;
 
     public Track(Integer id, Station station,Long stationId, Integer trackNumber, List<Waybill> wagons) {
