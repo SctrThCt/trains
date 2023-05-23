@@ -6,12 +6,9 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import stc.trains.CargoTestData;
 import stc.trains.WagonPassportTestData;
-import stc.trains.model.Cargo;
-import stc.trains.model.WagonPassport;
-import stc.trains.service.CargoService;
-import stc.trains.service.WagonPassportService;
+import stc.trains.wagonpassport.model.WagonPassport;
+import stc.trains.wagonpassport.service.WagonPassportService;
 
 import java.util.NoSuchElementException;
 

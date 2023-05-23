@@ -1,26 +1,21 @@
 package stc.trains.web;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import stc.trains.CargoTestData;
 import stc.trains.StationTestData;
 import stc.trains.TrackTestData;
 import stc.trains.WaybillTestData;
-import stc.trains.model.Cargo;
-import stc.trains.model.Station;
-import stc.trains.model.Waybill;
-import stc.trains.service.CargoService;
-import stc.trains.service.StationService;
-import stc.trains.service.TrackService;
-import stc.trains.service.WaybillService;
+import stc.trains.station.model.Station;
+import stc.trains.waybill.model.Waybill;
+import stc.trains.station.service.StationService;
+import stc.trains.track.service.TrackService;
+import stc.trains.waybill.service.WaybillService;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;

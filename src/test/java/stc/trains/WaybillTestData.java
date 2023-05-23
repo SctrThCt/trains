@@ -1,6 +1,6 @@
 package stc.trains;
 
-import stc.trains.model.Waybill;
+import stc.trains.waybill.model.Waybill;
 
 import java.util.List;
 

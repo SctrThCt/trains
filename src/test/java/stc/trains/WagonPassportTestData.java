@@ -1,9 +1,8 @@
 package stc.trains;
 
-import stc.trains.model.WagonPassport;
-import stc.trains.model.WagonType;
+import stc.trains.wagonpassport.model.WagonPassport;
+import stc.trains.wagonpassport.model.WagonType;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 public class WagonPassportTestData {

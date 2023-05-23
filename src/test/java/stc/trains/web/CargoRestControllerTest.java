@@ -1,16 +1,14 @@
 package stc.trains.web;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import stc.trains.CargoTestData;
-import stc.trains.model.Cargo;
-import stc.trains.service.CargoService;
+import stc.trains.cargo.model.Cargo;
+import stc.trains.cargo.service.CargoService;
 
 import java.util.NoSuchElementException;
 

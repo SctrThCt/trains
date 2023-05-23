@@ -1,14 +1,12 @@
 package stc.trains;
 
-import stc.trains.model.Track;
+import stc.trains.track.model.Track;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import static stc.trains.StationTestData.*;
-import static stc.trains.WaybillTestData.*;
 
 public class TrackTestData {
     public static Integer TRACK_1_ID = 1;

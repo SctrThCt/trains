@@ -1,6 +1,6 @@
 package stc.trains;
 
-import stc.trains.model.Station;
+import stc.trains.station.model.Station;
 
 import java.util.List;
 import java.util.Map;

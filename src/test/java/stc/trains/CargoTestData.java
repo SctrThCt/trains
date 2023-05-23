@@ -1,6 +1,6 @@
 package stc.trains;
 
-import stc.trains.model.Cargo;
+import stc.trains.cargo.model.Cargo;
 
 import java.util.List;
 
