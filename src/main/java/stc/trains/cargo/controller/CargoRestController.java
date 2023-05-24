@@ -1,6 +1,7 @@
 package stc.trains.cargo.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import stc.trains.cargo.model.Cargo;
@@ -13,7 +14,7 @@ import static stc.trains.util.ValidationUtil.assureIdConsistent;
 
 @RestController
 @RequestMapping(value = REST_URL)
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CargoRestController {
     public static final String REST_URL = "/api/cargo";
 

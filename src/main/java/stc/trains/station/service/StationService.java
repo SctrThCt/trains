@@ -1,11 +1,13 @@
 package stc.trains.station.service;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import stc.trains.station.model.Station;
 import stc.trains.track.model.Track;
+import stc.trains.util.ValidationUtil;
 import stc.trains.waybill.model.Waybill;
 import stc.trains.station.repository.StationRepository;
 import stc.trains.waybill.repository.WaybillRepository;
@@ -13,18 +15,21 @@ import stc.trains.waybill.repository.WaybillRepository;
 import java.util.Comparator;
 import java.util.List;
 
-@AllArgsConstructor
+import static stc.trains.util.ValidationUtil.checkNew;
+
+@RequiredArgsConstructor
 @Service
 @Slf4j
 public class StationService {
-    private StationRepository stationRepository;
-    private WaybillRepository waybillRepository;
+    final private StationRepository stationRepository;
+    final private WaybillRepository waybillRepository;
 
     public Station get(int id) {
         return stationRepository.findById(id).orElseThrow();
     }
 
     public Station create(Station station) {
+        checkNew(station);
         return stationRepository.save(station);
     }
 
@@ -33,7 +38,7 @@ public class StationService {
     }
 
     public void delete(int id) {
-        stationRepository.deleteExisted(id);
+        ValidationUtil.checkModification(stationRepository.delete(id),id);
     }
 
     public List<Station> getAll() {
